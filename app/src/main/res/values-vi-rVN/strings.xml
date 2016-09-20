@@ -3,4 +3,7 @@
     <string name="app_name">Lab 1</string>
     <string name="hello_message">Chào thế giới!</string>
     <string name="ButtonText">Tôi là một nút</string>
+    <string name="login">Đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="loginname">tên đăng nhập</string>
 </resources>
