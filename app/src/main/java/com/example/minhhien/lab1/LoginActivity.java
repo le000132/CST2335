@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        final EditText login =(EditText) findViewById(R.id.loginField);
+        final EditText login = (EditText) findViewById(R.id.loginField);
 
         Log.i(ACTIVITY_NAME, "In onCreate()");
         loginButton = (Button) findViewById(R.id.loginButton);
@@ -49,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("DefaultEmail", login.getText().toString());
                 editor.commit();
+                Intent intent = new Intent(LoginActivity.this, StartActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -65,8 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         Log.i(ACTIVITY_NAME, "In onStart()");
         sharedPref.getString("DefaultEmail", "email@domain.com");
-        Intent intent = new Intent(LoginActivity.this, StartActivity.class);
-        startActivity(intent);
+
     }
 
     @Override

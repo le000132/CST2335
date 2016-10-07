@@ -12,11 +12,13 @@
     tools:context="com.example.minhhien.lab1.ListItemsActivity">
     <RadioButton
         android:text="Button 1" />
-    <CheckBox />
+    <CheckBox android:id="@+id/check"/>
     <Switch
-        android:text="Enable Something"/>
+        android:text="Enable Something"
+        android:id="@+id/switch1"/>
     <ImageButton
         android:text="Button 2"
+        android:id="@+id/picButton"
         android:background="@android:drawable/btn_star_big_on" />
 
 </GridLayout>

@@ -6,4 +6,10 @@
     <string name="login">Đăng nhập</string>
     <string name="password">Mật khẩu</string>
     <string name="loginname">tên đăng nhập</string>
+    <string name="dialog_message">Bạn có muốn kết thúc hoạt động này?</string>
+    <string name="dialog_title">Xong chưa?</string>
+    <string name="ok">Có</string>
+    <string name="cancel">Không</string>
+    <string name="chatstart">Bắt đầu trò chuyện</string>
+    <string name="send">Gởi</string>
 </resources>
