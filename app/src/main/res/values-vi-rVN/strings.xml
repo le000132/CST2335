@@ -12,4 +12,5 @@
     <string name="cancel">Không</string>
     <string name="chatstart">Bắt đầu trò chuyện</string>
     <string name="send">Gởi</string>
+    <string name="weatherforecast">Weather Forecast</string>
 </resources>

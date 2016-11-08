@@ -38,6 +38,14 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        Button weatherForecastButton = (Button) findViewById(R.id.weatherButton);
+        weatherForecastButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View v) {
+                Intent intent = new Intent(StartActivity.this, WeatherForecast.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -74,9 +82,9 @@ public class StartActivity extends AppCompatActivity {
         if (requestCode == 5) {
             Log.i(ACTIVITY_NAME, "Returned to StartActivity.onActivityResult:");
         }
-        if (requestCode == Activity.RESULT_OK) {
+        if (responseCode == Activity.RESULT_OK) {
             String messagePassed = data.getStringExtra("Response");
-            Toast toast = Toast.makeText(this, "ListItemsActivity passed: My information to share", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "ListItemsActivity passed: My information to share", Toast.LENGTH_LONG);
         }
     }
 }
