@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id= "@+id/theKitchenMenu">
+
+
+    <item android:id="@+id/back"
+        android:orderInCategory="107"
+        android:title="Back"
+        app:showAsAction="never"
+        />
+
+    <item android:id="@+id/removeMenu"
+        android:orderInCategory="106"
+        android:title="Remove"
+        app:showAsAction="never"
+        />
+
+    <item android:id="@+id/addMenu"
+        android:orderInCategory="105"
+        android:title="Add"
+        app:showAsAction="never"
+        />
+
+    <item android:id="@+id/aboutKitchenMenu"
+        android:orderInCategory="104"
+        android:title="About"
+        app:showAsAction="never"
+        />
+
+    <item android:id="@+id/activity_automobile"
+        android:title="Automobile"
+        android:icon="@drawable/automobile"
+        android:orderInCategory="103"
+        app:showAsAction="always"
+        />
+
+    <item android:id="@+id/activity_house"
+        android:title="House"
+        android:icon="@drawable/house"
+        android:orderInCategory="102"
+        app:showAsAction="always"
+        />
+
+    <item android:id="@+id/activity_kitchen"
+        android:title="Kitchen"
+        android:icon="@drawable/oven"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        />
+
+    <item android:id="@+id/activity_living_room"
+        android:title="Living Room"
+        android:icon="@drawable/livingroom"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        />
+
+
+</menu>

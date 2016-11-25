@@ -33,7 +33,7 @@ public class StartActivity extends AppCompatActivity {
         startchatbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v) {
                 Log.i(ACTIVITY_NAME, "User clicked Start Chat");
-                Intent intent = new Intent(StartActivity.this, ChatWindow.class);
+                Intent intent = new Intent(StartActivity.this, MessageListActivity.class);
                 startActivity(intent);
             }
         });
@@ -46,7 +46,27 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        Button testToolbar = (Button) findViewById(R.id.testToolbar);
+        testToolbar.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View v) {
+                Intent intent = new Intent(StartActivity.this, TestToolbar.class);
+                startActivity(intent);
+            }
+        });
+
+        Button kitchen = (Button) findViewById(R.id.kitchen);
+        kitchen.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View v) {
+                Log.i(ACTIVITY_NAME, "User clicked Start Chat");
+                Intent intent = new Intent(StartActivity.this, KitchenListActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
+
+
 
     @Override
     protected void onResume() {

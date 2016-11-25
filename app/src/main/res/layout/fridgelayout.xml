@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:inputType="time"
+        android:ems="10"
+        android:layout_marginTop="81dp"
+        android:id="@+id/timer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:background="@drawable/border_layout"
+        android:textColor="#fafafa"
+        android:textSize="30pt"
+        android:text="60"
+        tools:ignore="LabelFor"
+        style="@android:style/Widget.Holo.Light.AutoCompleteTextView" />
+
+    <Button
+        android:text="@string/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:id="@+id/startTime"
+        android:layout_alignStart="@+id/timer"
+        android:layout_alignEnd="@+id/timer" />
+
+    <Button
+        android:text="@string/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startTime"
+        android:layout_alignStart="@+id/startTime"
+        android:id="@+id/endTime"
+        android:layout_alignEnd="@+id/startTime" />
+
+    <Button
+        android:text="@string/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resetTime"
+        android:layout_below="@+id/endTime"
+        android:layout_alignStart="@+id/endTime"
+        android:layout_alignEnd="@+id/endTime" />
+
+    <TextView
+        android:text="@string/microwave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/microwaveTitle"
+        android:layout_marginTop="28dp"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

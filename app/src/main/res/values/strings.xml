@@ -8,10 +8,22 @@
     <string name="loginname">login name</string>
     <string name="dialog_message">Do you want to finish the activity?</string>
     <string name="dialog_title">Are You Done?</string>
-    <string name="ok">Yes</string>
-    <string name="cancel">No</string>
+    <string name="ok">Okay</string>
+    <string name="cancel">Cancel</string>
     <string name="chatstart">Start Chat</string>
     <string name="send">Send</string>
     <string name="weatherforecast">Weather Forecast</string>
-
+    <string name="title_message_list">Messages</string>
+    <string name="title_message_detail">Message Detail</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="title_kitchen_list">Kitchen</string>
+    <string name="title_kitchen_detail">Kitchen Detail</string>
+    <string name="search">Search</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="reset">Reset</string>
+    <string name="microwave">Microwave</string>
+    <string name="current">You are currently in the %1$s interface.</string>
 </resources>

@@ -5,6 +5,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,7 +14,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartActivity"></activity>
+        <activity android:name=".StartActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
@@ -27,8 +28,45 @@
         <activity android:name=".ListItemsActivity" />
         <activity
             android:name=".ChatWindow"
-            android:label="Chat Window"></activity>
-        <activity android:name=".WeatherForecast"></activity>
+            android:label="Chat Window" />
+        <activity android:name=".WeatherForecast" />
+        <activity
+            android:name=".MessageListActivity"
+            android:label="@string/title_message_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MessageDetailActivity"
+            android:label="@string/title_message_detail"
+            android:parentActivityName=".MessageListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.minhhien.lab1.MessageListActivity" />
+        </activity>
+        <activity
+            android:name=".TestToolbar"
+            android:label="@string/title_activity_test_toolbar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".KitchenListActivity"
+            android:label="@string/title_kitchen_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".KitchenDetailActivity"
+            android:label="@string/title_kitchen_detail"
+            android:parentActivityName=".KitchenListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.minhhien.lab1.KitchenListActivity" />
+        </activity>
+        <activity
+            android:name=".AddActivity"
+            android:label="Add Items"/>
+        <activity
+            android:name=".RemoveActivity"
+            android:label="Remove Items"/>
+
     </application>
 
 </manifest>

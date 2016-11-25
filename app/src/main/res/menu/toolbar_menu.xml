@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id= "@+id/theMenu">
+
+    <item android:id="@+id/aboutMenu"
+        android:orderInCategory="103"
+        android:title="About"
+        app:showAsAction="never"
+        />
+
+    <item android:id="@+id/action_three"
+        android:title="One"
+        android:icon="@drawable/anonymousmask"
+        android:orderInCategory="102"
+        app:showAsAction="always"
+        />
+
+    <item android:id="@+id/action_two"
+        android:title="Two"
+        android:icon="@drawable/empire"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        />
+
+    <item android:id="@+id/action_one"
+        android:title="Three"
+        android:icon="@drawable/pokemon"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        />
+
+
+</menu>
