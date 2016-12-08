@@ -69,6 +69,7 @@ public class KitchenListActivity extends AppCompatActivity {
     ProgressBar progBar;
 
     private boolean mTwoPane;
+    ListView lv;
     String kitchenItem;
     String microwave = "Microwave";
     String fridge = "Fridge";
@@ -78,6 +79,7 @@ public class KitchenListActivity extends AppCompatActivity {
     KitchenAdapter messageAdapter;
     SQLiteDatabase db;
     protected static final String ACTIVITY_NAME = "Kitchen";
+    //static String messageText;
 
 
     @Override
@@ -96,7 +98,7 @@ public class KitchenListActivity extends AppCompatActivity {
 
 
         // setContentView(R.layout.activity_chat_window);
-        final ListView lv = (ListView) findViewById(R.id.kitchenlv);
+        lv = (ListView) findViewById(R.id.kitchenlv);
 
         final EditText editTextChatbox = (EditText) findViewById(R.id.kitchen_textbox);
         kitchenlist = new ArrayList<>();
@@ -106,9 +108,9 @@ public class KitchenListActivity extends AppCompatActivity {
 
         messageAdapter = new KitchenAdapter(this);
 
-        kitchenlist.add(microwave);
-        kitchenlist.add(fridge);
-        kitchenlist.add(lights);
+        //kitchenlist.add(microwave);
+        //kitchenlist.add(fridge);
+        //kitchenlist.add(lights);
 
         lv.setAdapter(messageAdapter);
         messageAdapter.notifyDataSetChanged();
@@ -121,7 +123,7 @@ public class KitchenListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(ACTIVITY_NAME, "User clicked search button");
                 kitchenItem = editTextChatbox.getText().toString();
-                Cursor result = db.rawQuery("SELECT * FROM ? WHERE KITCHEN = ?", new String[]{KitchenDatabaseHelper.TABLE_NAME, kitchenItem} );
+                Cursor result = db.rawQuery("SELECT * FROM KitchenItemList WHERE KITCHEN = ?", new String[]{kitchenItem} );
 
                 String columnNames[] = result.getColumnNames();
 
@@ -155,24 +157,11 @@ public class KitchenListActivity extends AppCompatActivity {
                     });
                     builder.show();
                 }
-                //messageAdapter.notifyDataSetChanged();
-                //lv.setAdapter(messageAdapter);
+                lv.setAdapter(messageAdapter);
+                messageAdapter.notifyDataSetChanged();
 
-                //Add the items via toolbar, not this below
-                //messagehistory.add(kitchenItem);
-
-                //ContentValues contentValues = new ContentValues();
-                //contentValues.put(KitchenDatabaseHelper.KEY_MESSAGE, preparemessage);
-                //db.insert(KitchenDatabaseHelper.TABLE_NAME, "NullPlaceHolder", contentValues);
-
-                //messageAdapter.notifyDataSetChanged();
-                //lv.setAdapter(messageAdapter);
-                //messageAdapter.notifyDataSetChanged();
             }
         });
-
-       // messageAdapter.notifyDataSetChanged();
-       // lv.setAdapter(messageAdapter);
 
 
 
@@ -182,57 +171,16 @@ public class KitchenListActivity extends AppCompatActivity {
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
             // activity should be in two-pane mode.
+
             mTwoPane = true;
+            Toast.makeText(getApplicationContext(), "Landscape", Toast.LENGTH_SHORT).show();
+
+        }
+        if(!mTwoPane) {
+            Toast.makeText(getApplicationContext(), "Portrait", Toast.LENGTH_SHORT).show();
         }
     }
 
-    //  private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-    //    recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
-    //}
-
-//    public class SimpleItemRecyclerViewAdapter
-//            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
-//
-//        private final List<DummyContent.DummyItem> mValues;
-//
-//        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
-//            mValues = items;
-//        }
-//
-//        @Override
-//        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//            View view = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.message_list_content, parent, false);
-//            return new ViewHolder(view);
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(final ViewHolder holder, int position) {
-//            holder.mItem = mValues.get(position);
-//            holder.mIdView.setText(mValues.get(position).id);
-//            holder.mContentView.setText(mValues.get(position).content);
-//
-//            holder.mView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (mTwoPane) {
-//                        Bundle arguments = new Bundle();
-//                        arguments.putString(MessageDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-//                        MessageDetailFragment fragment = new MessageDetailFragment();
-//                        fragment.setArguments(arguments);
-//                        getSupportFragmentManager().beginTransaction()
-//                                .replace(R.id.message_detail_container, fragment)
-//                                .commit();
-//                    } else {
-//                        Context context = v.getContext();
-//                        Intent intent = new Intent(context, MessageDetailActivity.class);
-//                        intent.putExtra(MessageDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-//
-//                        context.startActivity(intent);
-//                    }
-//                }
-//            });
-//        }
 
 
     public int getItemCount() {
@@ -276,6 +224,7 @@ public class KitchenListActivity extends AppCompatActivity {
 
 
                 break;
+            //Already in kitchen activity, display message.
             case R.id.activity_kitchen:
 
                 /*
@@ -310,7 +259,8 @@ public class KitchenListActivity extends AppCompatActivity {
 
 
                 android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(KitchenListActivity.this);
-                builder.setTitle("Go to Living Room interface?");
+                builder.setTitle("Go to House interface?");
+                builder.setMessage("Are you sure?");
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -334,7 +284,7 @@ public class KitchenListActivity extends AppCompatActivity {
                 /*Replace with
 
                 android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(KitchenListActivity.this);
-                builder.setTitle("Go to Living Room interface?");
+                builder.setTitle("Go to Automobile interface?");
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -354,15 +304,23 @@ public class KitchenListActivity extends AppCompatActivity {
                 break;
 
             case R.id.aboutKitchenMenu:
-                //Toast toast = Toast.makeText(getApplicationContext(), "Version 1.0, by Frederic Le", Toast.LENGTH_LONG);//this is the ListActivity
-                //toast.show();
+
+                android.support.v7.app.AlertDialog.Builder about = new android.support.v7.app.AlertDialog.Builder(KitchenListActivity.this);
+                about.setTitle("About"); //The about.
+                about.setMessage("Version 1.0, by Frederic Le \n\nSelect an item on the list to open controls of that item.");
+
+                about.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+
+                    }
+                });
+
+                about.show();
+
                 break;
 
             case R.id.addMenu:
-
-
-                        Intent intent = new Intent(KitchenListActivity.this, AddActivity.class);
-                        startActivity(intent);
 
 
                 break;
@@ -401,25 +359,7 @@ public class KitchenListActivity extends AppCompatActivity {
         }
         return true;
     }
-//        public class ViewHolder extends RecyclerView.ViewHolder {
-//            public final View mView;
-//            public final TextView mIdView;
-//            public final TextView mContentView;
-//            public DummyContent.DummyItem mItem;
-//
-//            public ViewHolder(View view) {
-//                super(view);
-//                mView = view;
-//                mIdView = (TextView) view.findViewById(R.id.id);
-//                mContentView = (TextView) view.findViewById(R.id.content);
-//            }
-//
-//            @Override
-//            public String toString() {
-//                return super.toString() + " '" + mContentView.getText() + "'";
-//            }
-//        }
-//    }
+
 
     protected class KitchenAdapter extends ArrayAdapter<String> {
         public KitchenAdapter(Context ctx) {
@@ -441,6 +381,16 @@ public class KitchenListActivity extends AppCompatActivity {
             LayoutInflater inflater = KitchenListActivity.this.getLayoutInflater();
             View result = null;
             result = inflater.inflate(R.layout.chat_row_incoming, null);
+
+            if(position == 0) {
+               result = inflater.inflate(R.layout.microwaveimage, null);
+            }
+            if(position == 1){
+                result = inflater.inflate(R.layout.fridgeimage, null);
+            }
+            if(position == 2){
+                result = inflater.inflate(R.layout.lightsimage, null);
+            }
            // if (position % 2 == 0) {
              //   result = inflater.inflate(R.layout.chat_row_incoming, null);
             //} else {
@@ -462,11 +412,26 @@ public class KitchenListActivity extends AppCompatActivity {
                                 .replace(R.id.kitchen_detail_container, fragment)
                                 .commit();
                     } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, KitchenDetailActivity.class);
-                        intent.putExtra(KitchenDetailFragment.ARG_ITEM_ID, messageText);
 
-                        context.startActivity(intent);
+
+                        if(messageText.equals("Microwave")) {
+                            Intent microwaveIntent = new Intent(KitchenListActivity.this, Microwave.class);
+
+                            startActivity(microwaveIntent);
+                        }
+
+                        else if(messageText.equals("Fridge")) {
+                            Intent fridgeIntent = new Intent(KitchenListActivity.this, Fridge.class);
+
+                            startActivity(fridgeIntent);
+                        }
+
+                        else if(messageText.equals("Lights")) {
+                            Intent lightsIntent = new Intent(KitchenListActivity.this, Lights.class);
+
+                            startActivity(lightsIntent);
+                        }
+
                     }
                 }
 
@@ -489,40 +454,75 @@ public class KitchenListActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
+            int progress = 0;
+
             KitchenDatabaseHelper tempObj = new KitchenDatabaseHelper(ctx);
             db = tempObj.getWritableDatabase();
-            //  HttpUtils httpUtils = new HttpUtils();
+            SystemClock.sleep(500);
+            publishProgress(++progress);
+            SystemClock.sleep(500);
+            /*ContentValues cV = new ContentValues();
+            cV.put(KitchenDatabaseHelper.KEY_MESSAGE, "Microwave");
+            db.insert(KitchenDatabaseHelper.TABLE_NAME, "NullPlaceholder", cV);
+            cV.put(KitchenDatabaseHelper.KEY_MESSAGE, "Fridge");
+            db.insert(KitchenDatabaseHelper.TABLE_NAME, "NullPlaceholder", cV);
+            cV.put(KitchenDatabaseHelper.KEY_MESSAGE, "Lights");
+            db.insert(KitchenDatabaseHelper.TABLE_NAME, "NullPlaceholder", cV);
 
-            publishProgress(25);
+
+            */
 
             //Load table
             Cursor cursor = db.rawQuery("SELECT * FROM " + KitchenDatabaseHelper.TABLE_NAME, null);
-
-            publishProgress(50);
-
+            SystemClock.sleep(1000);
+            publishProgress(++progress);
+            SystemClock.sleep(500);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                kitchenlist.add(cursor.getString(cursor.getColumnIndex("KITCHEN")));
+                publishProgress(++progress);
+                cursor.moveToNext();
+            }
             int colIndex = cursor.getColumnIndex(KitchenDatabaseHelper.KEY_MESSAGE);
-
+            SystemClock.sleep(500);
+            publishProgress(++progress);
+            SystemClock.sleep(500);
             if(cursor.getCount()>0) {
                 cursor.moveToFirst();
-                for (int i = 0; i < cursor.getCount(); i++) {
 
-                    String message = cursor.getString(colIndex);
-                    kitchenlist.add(message);
-                    Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(KitchenDatabaseHelper.KEY_MESSAGE)));
-                    cursor.moveToNext();
-                }
+                SystemClock.sleep(500);
+
             }
-
-            publishProgress(75);
-
+            SystemClock.sleep(500);
+            publishProgress(++progress);
+            SystemClock.sleep(500);
+            Log.i("Async", Integer.toString(progress));
+            SystemClock.sleep(500);
             Log.i(ACTIVITY_NAME, "Cursor's Column Count" + cursor.getColumnCount());
-
+            SystemClock.sleep(1000);
+            publishProgress(++progress);
+            SystemClock.sleep(1000);
             for (int i = 0; i < cursor.getColumnCount(); i++) {
                 Log.i(ACTIVITY_NAME, i + " " + cursor.getColumnName(i));
+                publishProgress(++progress);
+                SystemClock.sleep(5000);
             }
+
+            publishProgress(++progress);
+            SystemClock.sleep(10000);
+            while (progress != 90) {
+                Log.i("Async", Integer.toString(progress));
+                SystemClock.sleep(500);
+                publishProgress(progress++);
+
+            }
+
+            SystemClock.sleep(20000);
             cursor.close();
 
-            return null;
+            SystemClock.sleep(10000);
+            publishProgress(100);
+            return null;//Work on progress bar
 
 
 
@@ -534,6 +534,7 @@ public class KitchenListActivity extends AppCompatActivity {
             try {
                 super.onProgressUpdate();
                 progBar.setProgress(values[0]);
+
 
             }
             catch (Exception e) {

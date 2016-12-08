@@ -10,10 +10,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class AddActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
-
+    ListView availableItem;
+    KitchenListActivity.KitchenAdapter adapter;
+    ArrayList<String> itemList;
+    String samsungFridge = "";
+    String samsungFreezer = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,20 +28,30 @@ public class AddActivity extends AppCompatActivity {
 
         TextView descritpion = (TextView) findViewById(R.id.itemText);
 
-        final ListView availableItem = (ListView) findViewById(R.id.availablelv);
+        availableItem = (ListView) findViewById(R.id.availablelv);
 
-        final KitchenDatabaseHelper kdbHelper = new KitchenDatabaseHelper(this);
+        //itemList.add();
+
+        availableItem.setAdapter(adapter);
+
+        KitchenDatabaseHelper kdbHelper = new KitchenDatabaseHelper(this);
         kdbHelper.getWritableDatabase();
-
 
 
         availableItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ContentValues cv = new ContentValues();
-                cv.put("KITCHEN", availableItem.toString());
+                cv.put("KITCHEN", availableItem.getSelectedItem().toString());
 
                 db.insert(KitchenDatabaseHelper.TABLE_NAME, "KITCHEN ITEM", cv);
+
+
+
+                adapter.notifyDataSetChanged();
+                availableItem.setAdapter(adapter);
+
+
             }
         });
 

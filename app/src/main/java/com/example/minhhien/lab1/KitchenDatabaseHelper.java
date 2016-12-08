@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class KitchenDatabaseHelper extends SQLiteOpenHelper {
 
-    public static String DATABASE_NAME = "KitchenApp.db";
+    public static String DATABASE_NAME = "Kitchendb.db";
     public static int VERSION_NUM = 1;
     public static String TABLE_NAME = "KitchenItemList";
     public static String KEY_ID = "ID", KEY_MESSAGE = "KITCHEN";

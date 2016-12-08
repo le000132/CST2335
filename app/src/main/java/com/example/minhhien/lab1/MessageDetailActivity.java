@@ -55,11 +55,16 @@ public class MessageDetailActivity extends AppCompatActivity {
             Bundle arguments = new Bundle();
             arguments.putString(MessageDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(MessageDetailFragment.ARG_ITEM_ID));
-            MessageDetailFragment fragment = new MessageDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.message_detail_container, fragment)
-                    .commit();
+
+
+            {
+                MessageDetailFragment fragment = new MessageDetailFragment();
+
+                fragment.setArguments(arguments);
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.message_detail_container, fragment)
+                        .commit();
+            }
         }
     }
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class RemoveActivity extends AppCompatActivity {
 
     SQLiteDatabase db;
+    KitchenListActivity.KitchenAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class RemoveActivity extends AppCompatActivity {
                 db.delete(KitchenDatabaseHelper.TABLE_NAME, KitchenDatabaseHelper.KEY_ID  = "?", new String[] { Long.toString(id)});
                 Cursor result = db.query(false, KitchenDatabaseHelper.TABLE_NAME, new String[]{"ID", "KITCHEN"},
                         null, null, null, null, null, null);
-                //currentItemlv.setAdapter(KitchenListActivity.messageAdapter);
+                currentItemlv.setAdapter(adapter);
 
             }
         });
